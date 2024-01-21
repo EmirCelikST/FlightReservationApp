@@ -8,15 +8,24 @@ namespace FlightReservationAppEmirCelik
     {
         static void Main(string[] args)
         {
+            Console.BackgroundColor = ConsoleColor.DarkGray; // Change the background color to dark gray
+            Console.ForegroundColor = ConsoleColor.White;
+
             List<Rezervasyon> rezervasyonlar = new List<Rezervasyon>();
             List<Ucus> ucuslar = SabitUcuslariOlustur();
 
             while (true)
             {
-                Console.WriteLine("1. Yeni Rezervasyon");
-                Console.WriteLine("2. Rezervasyonları Göster");
-                Console.WriteLine("3. Uçuşları Göster ve Seç");
-                Console.WriteLine("4. Çıkış");
+                Console.Clear(); // Clear the screen
+
+                Console.WriteLine("*************************************");
+                Console.WriteLine("*          UÇAK REZERVASYON          *");
+                Console.WriteLine("*************************************");
+                Console.WriteLine("[1] Yeni Rezervasyon");
+                Console.WriteLine("[2] Rezervasyonları Göster");
+                Console.WriteLine("[3] Uçuşları Göster ve Seç");
+                Console.WriteLine("[4] Çıkış");
+                Console.WriteLine("*************************************");
                 Console.Write("Seçiminiz: ");
 
                 string secim = Console.ReadLine();
@@ -24,26 +33,39 @@ namespace FlightReservationAppEmirCelik
                 switch (secim)
                 {
                     case "1":
+                        Console.Clear();
                         UcuslariGosterVeSec(ucuslar, rezervasyonlar);
                         KayitlariDosyayaYaz("rezervasyonlar.csv", rezervasyonlar); // Save reservations to file immediately
                         break;
                     case "2":
+                        Console.Clear();
                         RezervasyonlariGoster(rezervasyonlar);
+                        Console.WriteLine("*************************************");
+                        Console.WriteLine("Devam etmek için herhangi bir tuşa basın...");
+                        Console.ReadKey();
                         break;
                     case "3":
+                        Console.Clear();
                         UcuslariGoster(ucuslar);
+                        Console.WriteLine("*************************************");
+                        Console.WriteLine("Devam etmek için herhangi bir tuşa basın...");
+                        Console.ReadKey();
                         break;
                     case "4":
                         Environment.Exit(0);
                         break;
                     default:
+                        Console.WriteLine("*************************************");
                         Console.WriteLine("Geçersiz seçim. Lütfen tekrar deneyin.");
+                        Console.WriteLine("Devam etmek için herhangi bir tuşa basın...");
+                        Console.ReadKey();
                         break;
                 }
             }
         }
 
-        static void KayitlariDosyayaYaz(string dosyaAdi, List<Rezervasyon> rezervasyonlar)
+
+    static void KayitlariDosyayaYaz(string dosyaAdi, List<Rezervasyon> rezervasyonlar)
         {
             try
             {
